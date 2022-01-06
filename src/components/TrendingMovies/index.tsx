@@ -3,9 +3,12 @@ import styles from './styles.module.scss';
 import "react-multi-carousel/lib/styles.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { DateFormated } from "../DateFormated";
+import { Stars } from "../Stars";
 type TMovies = {
 	id: string;
 	title: string;
+	release_date: string;
 	video: boolean;
 	adult: boolean;
 	vote_average: number;
@@ -13,25 +16,27 @@ type TMovies = {
 }
 
 type TPopularMoviesResponse = {
-	results: TMovies[]
+	results: TMovies[];
 }
 interface props {
-	language: string
+	language: string;
+	timeWindow: string;
 }
-export function TrendingMovies({language} : props) {
+export function TrendingMovies({language, timeWindow} : props) {
   
 	const [movies,setMovies] = useState<TMovies[]>([]);
 	useEffect(()=> {
-		axios.get<TPopularMoviesResponse>(`${import.meta.env.VITE_REACT_APP_API_URL}/popularMovies?language=${language}`)
+		axios.get<TPopularMoviesResponse>(`${import.meta.env.VITE_REACT_APP_API_URL}/trendingMovies?time_window=${timeWindow}&language=${language}`)
 			.then(({data}) => {
 				const {results} = data;
 				setMovies(results);
 			});
-	},[]);
+	},[language, timeWindow]);
+  
 	const responsive = {
 		UltraWide: {
 			breakpoint: { max: 4000, min: 3000 },
-			items: 5
+			items: 4
 		},
 		desktop: {
 			breakpoint: { max: 3000, min: 1024 },
@@ -46,31 +51,40 @@ export function TrendingMovies({language} : props) {
 			items: 1
 		}
 	};
+	
 	return (
-		<Carousel
-			responsive={responsive} 
-			swipeable={false}
-			centerMode={true}
-			draggable={false}
-			showDots={true}
-			infinite={true}
-			autoPlaySpeed={1000}
-			keyBoardControl={true}
-			customTransition="all .5"
-			transitionDuration={500}
-			containerClass={styles.carouselContainer}
-			removeArrowOnDeviceType={["tablet", "mobile"]}
-			itemClass={styles.item}
-		>
-			{movies.map((movie, index) => {
-				return (
-					<div className={styles.item} key = {movie.id}>
-						<img src={`${import.meta.env.VITE_IMAGE_URL}/${movie.poster_path}`} />
-						<span>{movie.id}</span>
-					</div>
-				);
-			})}
+		<>
+			<Carousel
+				responsive={responsive} 
+				swipeable={false}
+				centerMode={false}
+				draggable={true}
+				showDots={false}
+				infinite={true}
+				autoPlaySpeed={1000}
+				keyBoardControl={true}
+				customTransition="all .5"
+				transitionDuration={500}
+				containerClass={styles.carouselContainer}
+				removeArrowOnDeviceType={["tablet", "mobile"]}
+				itemClass={styles.item}
+			>
+				{movies.map((movie) => {
+					return (
+						<div className={styles.item} key = {movie.id}>
+							<img src={`${import.meta.env.VITE_IMAGE_URL}/${movie.poster_path}`} />
+							<div className= {styles.hideLongText}>
+								<div title={movie.title}>{movie.title}</div>
+								<div><DateFormated date={movie.release_date} format={"dd/MM/yyyy"}/></div>
+								<div><Stars average_rate={movie.vote_average}/></div>
+							</div>
+						</div>
+					);
+				})}
       
-		</Carousel>
+			</Carousel>
+		</>
+		
+		
 	);
 }
