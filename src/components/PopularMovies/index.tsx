@@ -1,10 +1,13 @@
 import { MoviesCarousel } from '../MoviesCarousel';
 import styles from './styles.module.scss';
-export function PopularMovies() {
+interface props {
+	language: string
+}
+export function PopularMovies({language} : props) {
 	return (
 		<div className={`${styles.center} ${styles.carousel}`}>
 			<h2>Filmes Populares</h2>
-			<MoviesCarousel/>
+			<MoviesCarousel language = {language}/>
 		</div>
 	);
 }

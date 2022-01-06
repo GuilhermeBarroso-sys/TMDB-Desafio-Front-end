@@ -9,21 +9,23 @@ type TMovies = {
 	vote_average: number;
 	poster_path: string;
 }
+
 type TPopularMoviesResponse = {
 	results: TMovies[]
 }
-export function MoviesCarousel() {
+interface props {
+	language: string
+}
+export function MoviesCarousel({language} : props) {
 	const [movies,setMovies] = useState<TMovies[]>([]);
 	useEffect(() => {
 	
-		axios.get<TPopularMoviesResponse>(`${import.meta.env.VITE_REACT_APP_API_URL}/popularMovies?language=pt-BR`).then(({data}) => {
-			console.log(data);
+		axios.get<TPopularMoviesResponse>(`${import.meta.env.VITE_REACT_APP_API_URL}/popularMovies?language=${language}`).then(({data}) => {
 			const {results} = data;
 			setMovies(results);
 		});
-	},[]);
+	},[language]);
 	return (
-	
 		<Carousel className={`${styles.carousel}`}  >
 			{movies.map((movie, index) => {
 				return (
