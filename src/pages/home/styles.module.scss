@@ -1,10 +1,15 @@
 .container {
   margin:0 auto;
   max-width:1024px;
+
   margin-top:2rem;
-  .selectBox {
-    width:13%;
-    margin:0px 1rem;
+  .selectBoxContainer {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    .selectBox {
+      width:13%;
+      margin:0px 1rem;
+    }
   }
-  
 }
