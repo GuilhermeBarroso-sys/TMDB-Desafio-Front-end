@@ -1,7 +1,8 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { LanguageContext } from '../../contexts/language';
+import { api } from '../../services/api';
 import { DateFormated } from '../DateFormated';
 import { Stars } from '../Stars';
 import styles from './style.module.scss';
@@ -23,13 +24,14 @@ type TMovie = {
 
 
 export function MovieScreen() {
+	const {getLanguage} = useContext(LanguageContext);
 	const [movie,setMovie] = useState<TMovie[]>([]);
 	useEffect(()=> {
 		const url = window.location.href.split('/');
 		const id = url.at(-1);
-		axios.get<TMovie>(`${import.meta.env.VITE_REACT_APP_API_URL}/findMovie/${id}?language`).then(({data}) => {
+		api.get<TMovie>(`findMovie/${id}?language=${getLanguage()}`).then(({data}) => {
 			setMovie([data]);
-			console.log(data);
+	
 		});
 	}, []);
 	return (
@@ -57,7 +59,7 @@ export function MovieScreen() {
 							<h2> Avaliação do Filme</h2>
 							<Stars average_rate={data.vote_average}/>
 							<div className={styles.buttons}>
-								<Button  variant="outline-primary">Adicionar nos meus filmes</Button>
+								<Button  variant="outline-primary">Adicionar aos meus filmes</Button>
 								<Button  variant="outline-success">Comentar</Button>
 							</div>
 						</div>

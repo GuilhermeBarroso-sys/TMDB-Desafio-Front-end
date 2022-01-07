@@ -15,11 +15,13 @@
     "react": "^17.0.2",
     "react-bootstrap": "^2.1.0",
     "react-dom": "^17.0.2",
+    "react-icons": "^4.3.1",
     "react-materialize": "^3.10.0",
     "react-multi-carousel": "^2.6.5",
     "react-router-dom": "^6.2.1",
     "react-star-ratings": "^2.3.0",
-    "sass": "^1.46.0"
+    "sass": "^1.46.0",
+    "sweetalert2": "^11.3.3"
   },
   "devDependencies": {
     "@types/node": "^17.0.8",

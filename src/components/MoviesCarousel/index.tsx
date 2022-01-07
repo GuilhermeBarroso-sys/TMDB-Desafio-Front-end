@@ -1,7 +1,7 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { Carousel } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { api } from "../../services/api";
 import styles from './style.module.scss';
 type TMovies = {
 	id: string;
@@ -21,8 +21,7 @@ interface props {
 export function MoviesCarousel({language} : props) {
 	const [movies,setMovies] = useState<TMovies[]>([]);
 	useEffect(() => {
-	
-		axios.get<TPopularMoviesResponse>(`${import.meta.env.VITE_REACT_APP_API_URL}/popularMovies?language=${language}`).then(({data}) => {
+		api.get<TPopularMoviesResponse>(`popularMovies?language=${language}`).then(({data}) => {
 			const {results} = data;
 			setMovies(results);
 		});

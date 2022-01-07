@@ -6,7 +6,6 @@ interface props {
 export function PopularMovies({language} : props) {
 	return (
 		<div className={`${styles.center} ${styles.carousel}`}>
-		
 			<MoviesCarousel language = {language}/>
 		</div>
 	);

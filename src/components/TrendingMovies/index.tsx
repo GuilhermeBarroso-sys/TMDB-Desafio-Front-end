@@ -2,10 +2,10 @@ import Carousel from "react-multi-carousel";
 import styles from './styles.module.scss';
 import "react-multi-carousel/lib/styles.css";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { DateFormated } from "../DateFormated";
 import { Stars } from "../Stars";
 import { Link, Navigate } from "react-router-dom";
+import { api } from "../../services/api";
 type TMovies = {
 	id: string;
 	title: string;
@@ -27,7 +27,7 @@ export function TrendingMovies({language, timeWindow} : props) {
   
 	const [movies,setMovies] = useState<TMovies[]>([]);
 	useEffect(()=> {
-		axios.get<TPopularMoviesResponse>(`${import.meta.env.VITE_REACT_APP_API_URL}/trendingMovies?time_window=${timeWindow}&language=${language}`)
+		api.get<TPopularMoviesResponse>(`trendingMovies?time_window=${timeWindow}&language=${language}`)
 			.then(({data}) => {
 				const {results} = data;
 				setMovies(results);

@@ -1,3 +1,17 @@
+.menu {
+  width:95%;
+  margin-top:1rem;
+  text-align: right;
+  a{
+    text-decoration: none;
+    margin-left:15px;
+    color: var(--white);
+    cursor:pointer;
+    &:hover {
+      filter:brightness(0.9)
+    }
+  }
+}
 .container {
   margin:0 auto;
   max-width:1024px;
