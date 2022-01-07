@@ -28,7 +28,7 @@ export function MoviesCarousel({language} : props) {
 		});
 	},[language]);
 	return (
-		<Carousel className={`${styles.carousel}`}  >
+		<Carousel interval={2500} className={`${styles.carousel}`}  >
 			{movies.map((movie, index) => {
 				return (
 					<Carousel.Item key = {index}>

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { DateFormated } from '../DateFormated';
 import { Stars } from '../Stars';
@@ -10,6 +11,11 @@ type TMovie = {
 	overview: string;
 	video: boolean;
 	adult: boolean;
+	runtime: number;
+	genres: [{
+		id: string;
+		name: string;
+	}]
 	vote_average: number;
 	release_date: string;
 	poster_path: string;
@@ -23,6 +29,7 @@ export function MovieScreen() {
 		const id = url.at(-1);
 		axios.get<TMovie>(`${import.meta.env.VITE_REACT_APP_API_URL}/findMovie/${id}?language`).then(({data}) => {
 			setMovie([data]);
+			console.log(data);
 		});
 	}, []);
 	return (
@@ -36,15 +43,27 @@ export function MovieScreen() {
 							<h2>{data.title}</h2>
 							<div className={styles.description}>
 								<p>{data.overview}</p>
-								<p>Estreia: <DateFormated date = {`${data.release_date}`} format='dd/MM/yyyy' /></p>
+								<p>Data de lançamento: <DateFormated date = {`${data.release_date}`} format='dd/MM/yyyy' /></p>
+								<p>Duracao: {(data.runtime / 60).toFixed(2)} Horas</p>
+								<p>Gênero: {data.genres.map((genre, index) => {
+									
+									return (
+										<span key={genre.id}>{index == data.genres.length-1 ? `${genre.name}` : `${genre.name}, `} </span>
+										
+									);
+								})}</p>
+								
 							</div>
 							<h2> Avaliação do Filme</h2>
 							<Stars average_rate={data.vote_average}/>
+							<div className={styles.buttons}>
+								<Button  variant="outline-primary">Adicionar nos meus filmes</Button>
+								<Button  variant="outline-success">Comentar</Button>
+							</div>
 						</div>
 						<div className={styles.background}>
 							<img className={styles.movieBackgroundContainer}  src={`${import.meta.env.VITE_IMAGE_URL}/${data.poster_path}`} />
 						</div>
-          
 					</div>
 				);
 			})}

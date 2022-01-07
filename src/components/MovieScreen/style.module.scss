@@ -29,6 +29,13 @@
         text-align: justify;
       }
     }
+    .buttons {
+      margin-top:1rem;
+      display:flex;
+      justify-content: space-between;
+      text-align: left;
+      width:70%;
+    }
   }
   .background {
     width:50%;
