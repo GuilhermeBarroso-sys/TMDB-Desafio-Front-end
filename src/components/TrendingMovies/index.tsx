@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { DateFormated } from "../DateFormated";
 import { Stars } from "../Stars";
+import { Link, Navigate } from "react-router-dom";
 type TMovies = {
 	id: string;
 	title: string;
@@ -72,7 +73,7 @@ export function TrendingMovies({language, timeWindow} : props) {
 				{movies.map((movie) => {
 					return (
 						<div className={styles.item} key = {movie.id}>
-							<img src={`${import.meta.env.VITE_IMAGE_URL}/${movie.poster_path}`} />
+							<Link to={`/movie/${movie.id}`}><img src={`${import.meta.env.VITE_IMAGE_URL}/${movie.poster_path}`}/> </Link>
 							<div className= {styles.hideLongText}>
 								<div title={movie.title}>{movie.title}</div>
 								<div><DateFormated date={movie.release_date} format={"dd/MM/yyyy"}/></div>

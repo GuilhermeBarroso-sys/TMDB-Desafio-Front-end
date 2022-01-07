@@ -5,6 +5,12 @@
   align-items: center;
   justify-content: center;
   flex-wrap: nowrap;
+  a {
+    text-decoration: none;
+    &:hover {
+      filter:brightness(0.8)
+    }
+  }
   h4{
     line-height: 2rem;
    
