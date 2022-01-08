@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
+import {AiOutlineArrowLeft} from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import { Comment } from '../Comment';
 import { LanguageContext } from '../../contexts/language';
@@ -50,7 +51,7 @@ export function MovieScreen() {
 					<div className={styles.flexContainer} key={data.title}>
 
 						<div key={data.title} className={styles.container}>
-							<Link to ="/"><h1>Voltar</h1></Link>;
+							<Link to ="/"><div><AiOutlineArrowLeft/></div></Link>;
 							<h2>{data.title}</h2>
 							<div className={styles.description}>
 								<p>{data.overview}</p>

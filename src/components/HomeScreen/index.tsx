@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
+import {BiLogOut} from 'react-icons/bi';
 import { Form, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { Menu } from '../Menu';
@@ -13,18 +14,21 @@ import searchImg from '../../assets/undraw_horror_movie_3988.svg';
 import { SavedMovies } from '../SavedMovies';
 export function HomeScreen() {
 	const {setLanguage, getLanguage,storageLanguage} = useContext(LanguageContext);
-	const {isAuthenticated, signOut} = useContext(AuthContext);
+	const {user,isAuthenticated, signOut} = useContext(AuthContext);
+	const [authenticate, setAuthenticate] = useState<boolean>(isAuthenticated());
 	const [search, setSearch] = useState('');
 	const [timeWindow, setTimeWindow] = useState("day");
-	console.log(isAuthenticated());
+	useEffect(() => {
+		setAuthenticate(isAuthenticated());
+	}, [user]);
 	function handleLogout(event : React.MouseEvent<HTMLElement>) {
 		event.preventDefault();
 		signOut();
 	}
 	return (
 		<>
-			{ isAuthenticated()
-				? <div className={styles.menu}><a href="" onClick={handleLogout}>Sair</a></div> 
+			{ authenticate
+				? <div className={styles.menu}> <button onClick={handleLogout}><BiLogOut /></button> </div> 
 				: <div className={styles.menu}><Menu/></div> 
 			}
 			<div className={styles.container}>

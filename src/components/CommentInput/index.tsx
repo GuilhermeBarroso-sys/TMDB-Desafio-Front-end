@@ -23,10 +23,10 @@ export function CommentInput({handleSetComment, movieId} : props) {
 					}
 				}
 			});
-			handleSetComment(value);
 			api.post('comment',{text: value, movie_id: movieId}).then((response) => {
 				if(response.status == 201) {
 					Swal.fire("Sucesso", "Comentário adicionado com sucesso!", "success");
+					handleSetComment(value);
 				}
 			});
 		}

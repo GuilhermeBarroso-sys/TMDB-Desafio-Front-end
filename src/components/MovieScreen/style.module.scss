@@ -2,11 +2,16 @@
   a{
     text-decoration: none;
     width:100%;
+    margin: 1rem 0 0 2.5rem;
     display:flex;
     align-items:flex-start;
     color:var(--white);
     &:hover {
       filter: brightness(0.9);
+    }
+    svg {
+      width:3rem;
+      height:3rem;
     }
   }
   width:100%;

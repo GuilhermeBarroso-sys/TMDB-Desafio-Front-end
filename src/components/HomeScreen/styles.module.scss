@@ -11,6 +11,21 @@
       filter:brightness(0.9)
     }
   }
+  button{
+    background-color: transparent;
+    text-decoration: none;
+    outline: 0;
+    border: 0;
+    cursor:pointer;
+    &:hover {
+      filter:brightness(0.9)
+    }
+    svg {
+      color:var(--white);
+      width:26px;
+      height:26px;
+    }
+  }
 }
 .container {
   margin:0 auto;
