@@ -83,7 +83,7 @@ export function AuthProvider(props : AuthProvider) {
 
 	async function signUp({name,email,password}:ISignUp) {
 		try {
-			await api.post<RegisterResponse>('register', {
+			await api.post<RegisterResponse>('user', {
 				name,
 				email,
 				password,
@@ -121,6 +121,7 @@ export function AuthProvider(props : AuthProvider) {
 		if(!token) {
 			return false;
 		}
+		api.defaults.headers.common.authorization = `Bearer ${token}`;
 		return true;
 	}
 	function loginWarning(text : string) {
@@ -135,6 +136,7 @@ export function AuthProvider(props : AuthProvider) {
 		if(token) {
 			api.defaults.headers.common.authorization = `Bearer ${token}`;
 		}
+
 	},[]);
 
 	return (

@@ -5,8 +5,9 @@ import { AuthContext } from "../../contexts/auth";
 import { api } from "../../services/api";
 interface props  {
 	handleSetComment: (value : string) => void;
+	movieId: number;
 }
-export function CommentInput({handleSetComment} : props) {
+export function CommentInput({handleSetComment, movieId} : props) {
 	const {isAuthenticated, loginWarning} = useContext(AuthContext);
 	async function handleComment() {
 		if(!isAuthenticated()) {
@@ -23,7 +24,7 @@ export function CommentInput({handleSetComment} : props) {
 				}
 			});
 			handleSetComment(value);
-			api.post('comment',{text: value}).then((response) => {
+			api.post('comment',{text: value, movie_id: movieId}).then((response) => {
 				if(response.status == 201) {
 					Swal.fire("Sucesso", "Comentário adicionado com sucesso!", "success");
 				}

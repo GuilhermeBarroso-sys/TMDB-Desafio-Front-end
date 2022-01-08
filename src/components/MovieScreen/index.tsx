@@ -8,6 +8,7 @@ import { CommentInput } from '../CommentInput';
 import { DateFormated } from '../DateFormated';
 import { Stars } from '../Stars';
 import styles from './style.module.scss';
+import { SaveMovieInput } from '../SaveMovieInput';
 type TMovie = {
 	id: string;
 	title: string;
@@ -25,6 +26,11 @@ type TMovie = {
 }
 
 export function MovieScreen() {
+	function handleGetMovieId() {
+		const url = window.location.href.split('/');
+		const movie_id = url.at(-1);
+		return parseInt(movie_id);
+	}
 	const {getLanguage} = useContext(LanguageContext);
 	const [movie,setMovie] = useState<TMovie[]>([]);
 	const [comment, setComment] = useState('');
@@ -32,11 +38,9 @@ export function MovieScreen() {
 		setComment(value);
 	}
 	useEffect(()=> {
-		const url = window.location.href.split('/');
-		const id = url.at(-1);
-		api.get<TMovie>(`findMovie/${id}?language=${getLanguage()}`).then(({data}) => {
+		const movie_id = handleGetMovieId();
+		api.get<TMovie>(`findMovie/${movie_id}?language=${getLanguage()}`).then(({data}) => {
 			setMovie([data]);
-	
 		});
 	}, []);
 	return (
@@ -64,11 +68,13 @@ export function MovieScreen() {
 							<h2> Avaliação do Filme</h2>
 							<Stars average_rate={data.vote_average}/>
 							<div className={styles.buttons}>
-								<Button  variant="outline-primary">Adicionar aos meus filmes</Button>
-								<CommentInput handleSetComment = {handleSetComment}/>
+                
+								<p><SaveMovieInput movieId={handleGetMovieId()} /></p>
+								<p><CommentInput movieId={handleGetMovieId()} handleSetComment = {handleSetComment}/></p>
+								
 							</div>
 							<h2> Comentarios</h2>
-							<Comment comment = {comment}/>
+							<Comment movieId={handleGetMovieId()} comment = {comment}/>
 						</div>
 						<div className={styles.background}>
 							<img className={styles.movieBackgroundContainer}  src={`${import.meta.env.VITE_IMAGE_URL}/${data.poster_path}`} />

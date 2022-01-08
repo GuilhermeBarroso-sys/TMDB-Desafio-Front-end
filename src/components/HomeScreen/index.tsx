@@ -10,11 +10,13 @@ import { AuthContext } from '../../contexts/auth';
 import { LanguageContext } from '../../contexts/language';
 import styles from './styles.module.scss';
 import searchImg from '../../assets/undraw_horror_movie_3988.svg';
+import { SavedMovies } from '../SavedMovies';
 export function HomeScreen() {
-	const {language, setLanguage, getLanguage,storageLanguage} = useContext(LanguageContext);
+	const {setLanguage, getLanguage,storageLanguage} = useContext(LanguageContext);
 	const {isAuthenticated, signOut} = useContext(AuthContext);
 	const [search, setSearch] = useState('');
 	const [timeWindow, setTimeWindow] = useState("day");
+	console.log(isAuthenticated());
 	function handleLogout(event : React.MouseEvent<HTMLElement>) {
 		event.preventDefault();
 		signOut();
@@ -52,6 +54,13 @@ export function HomeScreen() {
 				</Row>
 			</div>
 			<TrendingMovies timeWindow={timeWindow}/>
+      
+			<h2>Meus filmes </h2>
+			{isAuthenticated() 
+				? <SavedMovies/>
+				: <div className={styles.savedMovies}><h5>Para salvar filmes,  <Link to ="/register">crie sua conta clicando aqui</Link></h5> </div>
+			}
+
 			<h2> Buscar um filme </h2>
 			<div className={styles.search}>
 				<Search setSearch={setSearch}/>
@@ -61,6 +70,7 @@ export function HomeScreen() {
 
 				{!search ? <div className={styles.undraw}><img src={searchImg} /> </div> : <SearchMovies search={search}/>}
 			</div>
+      
 	
 
 		</>

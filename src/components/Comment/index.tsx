@@ -8,17 +8,16 @@ type Comment = {
 	created_at: string;
 	user: {
 		name: string
-	}
-  
+	} 
 }
 interface props  {
 	comment: string;
+	movieId: number;
 }
-export function Comment({comment} : props) {
+export function Comment({comment, movieId} : props) {
 	const [comments, setComments] = useState<Comment[]>([]);
 	useEffect(() => {
-		console.log(comment);
-		api.get<Comment[]>(`comment`)
+		api.get<Comment[]>(`comment/${movieId}`)
 			.then(({data}) => {
 				console.log(data);
 				setComments(data);
@@ -27,8 +26,8 @@ export function Comment({comment} : props) {
 	return (
 		<>
 			{
-				comments 
-					? comments.map((comment, index) => {
+				comments.length > 0
+					? comments.map((comment) => {
 						return (
 							<div className={styles.comments} key = {comment.id}>		
 								<span className={styles.author}>{comment.user.name}:</span>
