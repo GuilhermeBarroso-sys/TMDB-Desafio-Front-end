@@ -1,8 +1,10 @@
 import { useContext, useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { Comment } from '../Comment';
 import { LanguageContext } from '../../contexts/language';
 import { api } from '../../services/api';
+import { CommentInput } from '../CommentInput';
 import { DateFormated } from '../DateFormated';
 import { Stars } from '../Stars';
 import styles from './style.module.scss';
@@ -22,10 +24,13 @@ type TMovie = {
 	poster_path: string;
 }
 
-
 export function MovieScreen() {
 	const {getLanguage} = useContext(LanguageContext);
 	const [movie,setMovie] = useState<TMovie[]>([]);
+	const [comment, setComment] = useState('');
+	function handleSetComment(value: string) {
+		setComment(value);
+	}
 	useEffect(()=> {
 		const url = window.location.href.split('/');
 		const id = url.at(-1);
@@ -60,13 +65,16 @@ export function MovieScreen() {
 							<Stars average_rate={data.vote_average}/>
 							<div className={styles.buttons}>
 								<Button  variant="outline-primary">Adicionar aos meus filmes</Button>
-								<Button  variant="outline-success">Comentar</Button>
+								<CommentInput handleSetComment = {handleSetComment}/>
 							</div>
+							<h2> Comentarios</h2>
+							<Comment comment = {comment}/>
 						</div>
 						<div className={styles.background}>
 							<img className={styles.movieBackgroundContainer}  src={`${import.meta.env.VITE_IMAGE_URL}/${data.poster_path}`} />
 						</div>
 					</div>
+          
 				);
 			})}
 		</>

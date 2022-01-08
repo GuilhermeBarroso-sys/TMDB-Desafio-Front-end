@@ -2,9 +2,8 @@ import Carousel from "react-multi-carousel";
 import styles from './styles.module.scss';
 import "react-multi-carousel/lib/styles.css";
 import { useContext, useEffect, useState } from "react";
-import { DateFormated } from "../DateFormated";
-import { Stars } from "../Stars";
-import { Link, Navigate } from "react-router-dom";
+import NoImage from '../../assets/undraw_warning_cyit.svg';
+import { Link } from "react-router-dom";
 import { api } from "../../services/api";
 import { LanguageContext } from "../../contexts/language";
 type TMovies = {
@@ -17,22 +16,28 @@ type TMovies = {
 	poster_path: string;
 }
 
-type TPopularMoviesResponse = {
+type TSearchMovies = {
 	results: TMovies[];
 }
 interface props {
-	timeWindow: string;
+	search: string;
 }
-export function TrendingMovies({timeWindow} : props) {
+export function SearchMovies({search} : props) {
 	const {language} = useContext(LanguageContext);
 	const [movies,setMovies] = useState<TMovies[]>([]);
 	useEffect(()=> {
-		api.get<TPopularMoviesResponse>(`trendingMovies?time_window=${timeWindow}&language=${language}`)
-			.then(({data}) => {
-				const {results} = data;
-				setMovies(results);
-			});
-	},[language, timeWindow]);
+		if(search) {
+			console.log(`searchMovie?query=${search}&language=${language}`);
+			api.get<TSearchMovies>(`searchMovie?query=${search}&language=${language}`)
+				.then(({data}) => {
+					const {results} = data;
+					setMovies(results);
+				});
+		} else {
+			setMovies([]);
+
+		}
+	},[search, language]);
   
 	const responsive = {
 		UltraWide: {
@@ -70,20 +75,25 @@ export function TrendingMovies({timeWindow} : props) {
 				removeArrowOnDeviceType={["tablet", "mobile"]}
 				itemClass={styles.item}
 			>
+
+
 				{movies.map((movie) => {
-					return (
-						<div className={styles.item} key = {movie.id}>
-							<Link to={`/movie/${movie.id}`}><img src={`${import.meta.env.VITE_IMAGE_URL}/${movie.poster_path}`}/> </Link>
-							<div className= {styles.hideLongText}>
-								<div title={movie.title}>{movie.title}</div>
-								<div><DateFormated date={movie.release_date} format={"dd/MM/yyyy"}/></div>
-								<div><Stars average_rate={movie.vote_average}/></div>
-							</div>
-						</div>
-					);
+					if(movie.poster_path) {
+						return (				
+							<div className={styles.item} key = {movie.id}>
+								<Link to={`/movie/${movie.id}`}> {<img src={`${import.meta.env.VITE_IMAGE_URL}/${movie.poster_path}`}/>} </Link>
+								<div className= {styles.hideLongText}>
+									<div title={movie.title}>{movie.title}</div>
+              
+								</div>
+							</div>					
+						);
+					}
 				})}
-      
+
 			</Carousel>
+				
+      
 		</>
 		
 		

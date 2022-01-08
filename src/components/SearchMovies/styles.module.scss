@@ -1,0 +1,28 @@
+h2 {
+  text-align: center;
+  margin-top:2rem;
+}
+.carouselContainer {
+  width:100%;
+  margin:0 auto;
+  margin-top:3rem;
+}
+.item {
+  text-align: center;
+  margin:0 auto;
+  width:60%;
+  height:350px;
+  img {
+    border-radius:5px;
+    width:100%;
+    height:75%;
+  }
+.hideLongText {
+  div {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    color: var(--white);
+  }
+}
+}

@@ -17,6 +17,7 @@ type AuthContextData = {
 	signIn: ({email,password}:ISignIn) => Promise<boolean>
 	signUp: ({name,email,password}:ISignUp) => Promise<boolean>
 	isAuthenticated: () =>  boolean;
+	loginWarning: (text : string) => void;
 }
 interface ISignIn {
 	email: string;
@@ -122,7 +123,13 @@ export function AuthProvider(props : AuthProvider) {
 		}
 		return true;
 	}
-
+	function loginWarning(text : string) {
+		Swal.fire({
+			title: "Aviso",
+			text: text,
+			icon: "warning",
+		});
+	}
 	useEffect(() => {
 		const token = localStorage.getItem('@desafioD1:token');
 		if(token) {
@@ -131,7 +138,7 @@ export function AuthProvider(props : AuthProvider) {
 	},[]);
 
 	return (
-		<AuthContext.Provider value ={{user, signOut, signIn, signUp, isAuthenticated}}>
+		<AuthContext.Provider value ={{user, signOut, signIn, signUp, isAuthenticated, loginWarning}}>
 			{props.children}
 		</AuthContext.Provider>
 	);

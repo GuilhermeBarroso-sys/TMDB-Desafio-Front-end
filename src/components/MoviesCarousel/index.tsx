@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Carousel } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { LanguageContext } from "../../contexts/language";
 import { api } from "../../services/api";
 import styles from './style.module.scss';
 type TMovies = {
@@ -15,10 +16,8 @@ type TMovies = {
 type TPopularMoviesResponse = {
 	results: TMovies[]
 }
-interface props {
-	language: string
-}
-export function MoviesCarousel({language} : props) {
+export function MoviesCarousel() {
+	const {language} = useContext(LanguageContext);
 	const [movies,setMovies] = useState<TMovies[]>([]);
 	useEffect(() => {
 		api.get<TPopularMoviesResponse>(`popularMovies?language=${language}`).then(({data}) => {
