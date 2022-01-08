@@ -1,17 +1,28 @@
-.comments {
-  width:80%;
-  text-align: justify;
-  border-bottom:0.1px solid var(--white);
-  .author {
-    font-weight: bold;
-    font-size:1.2rem;
+.container {
+  width:100%;
+  .comments {
+    width:80%;
+    text-align: justify;
+    margin:0 auto;
+    border-bottom:0.1px solid var(--white);
+    .author {
+      font-weight: bold;
+      font-size:1.2rem;
+    }
+    .text {
+      font-size: 1rem;
+      text-indent: 0.2rem;
+    }
+    .datetime {
+      width:100%;
+      text-align: right;
+    }
+    
   }
-  .text {
-    font-size: 1rem;
-    text-indent: 0.2rem;
-  }
-  .datetime {
-    width:100%;
-    text-align: right;
+  
+}
+@media screen and (max-width:800px) {
+  .container:last-child {
+    padding-bottom:1.5rem;
   }
 }

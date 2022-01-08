@@ -29,11 +29,13 @@ export function Comment({comment, movieId} : props) {
 				comments.length > 0
 					? comments.map((comment) => {
 						return (
-							<div className={styles.comments} key = {comment.id}>		
-								<span className={styles.author}>{comment.user.name}:</span>
-								<span > {comment.text}</span>
-								<div className={styles.datetime}>
-									<span ><DateFormated date={comment.created_at} format='dd/MM/yyyy'/></span>
+							<div className = {styles.container} key = {comment.id}>
+								<div className={styles.comments} >		
+									<span className={styles.author}>{comment.user.name}:</span>
+									<span > {comment.text}</span>
+									<div className={styles.datetime}>
+										<span ><DateFormated date={comment.created_at} format='dd/MM/yyyy'/></span>
+									</div>
 								</div>
 							</div>
 						);

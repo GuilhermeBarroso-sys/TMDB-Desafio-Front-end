@@ -54,3 +54,15 @@
   }
   
 }
+
+@media screen and (max-width:780px) {
+  .flexContainer {
+    flex-direction: column-reverse;
+    
+  }
+  .background {
+    img {
+      display:none;
+    }
+  }
+}

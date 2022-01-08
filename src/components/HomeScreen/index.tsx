@@ -26,7 +26,7 @@ export function HomeScreen() {
 		signOut();
 	}
 	return (
-		<>
+		<div className = {styles.homeScreen}>
 			{ authenticate
 				? <div className={styles.menu}> <button onClick={handleLogout}><BiLogOut /></button> </div> 
 				: <div className={styles.menu}><Menu/></div> 
@@ -62,7 +62,7 @@ export function HomeScreen() {
 			<h2>Meus filmes </h2>
 			{isAuthenticated() 
 				? <SavedMovies/>
-				: <div className={styles.savedMovies}><h5>Para salvar filmes,  <Link to ="/register">crie sua conta clicando aqui</Link></h5> </div>
+				: <div className={styles.savedMovies}><h5>Para salvar filmes, <Link to ="/register">crie sua conta clicando aqui</Link></h5> </div>
 			}
 
 			<h2> Buscar um filme </h2>
@@ -77,6 +77,6 @@ export function HomeScreen() {
       
 	
 
-		</>
+		</div>
 	);
 }
