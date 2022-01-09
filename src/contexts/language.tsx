@@ -26,7 +26,7 @@ export function HandleLanguage(props : AuthProvider) {
 	useEffect(() => {
 		getLanguage();
 	},[]);
-	const [language, setLanguage] = useState(getLanguage());
+	const [language, setLanguage] = useState('pt-BR');
 	return (
 		<LanguageContext.Provider value = {{language,setLanguage, getLanguage, storageLanguage}}>
 			{props.children}
