@@ -6,7 +6,6 @@ import { DateFormated } from "../DateFormated";
 import { Stars } from "../Stars";
 import { Link, Navigate } from "react-router-dom";
 import { LanguageContext } from "../../contexts/language";
-import { AuthContext } from "../../contexts/auth";
 import { api } from "../../services/api";
 type TMovies = {
 	id: string;

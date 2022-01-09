@@ -1,7 +1,4 @@
 import { useContext, useEffect, useState } from 'react';
-import { Button } from 'react-bootstrap';
-import {AiOutlineArrowLeft} from 'react-icons/ai';
-import { Link } from 'react-router-dom';
 import { Comment } from '../Comment';
 import { LanguageContext } from '../../contexts/language';
 import { api } from '../../services/api';
