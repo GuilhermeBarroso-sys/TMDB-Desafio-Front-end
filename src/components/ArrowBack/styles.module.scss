@@ -1,0 +1,14 @@
+.arrowBack{
+  a{
+    text-decoration: none;
+    margin-left: 1rem; 
+    color:var(--white);
+    &:hover {
+      filter: brightness(0.9);
+    }
+    svg {
+      width:3rem;
+      height:3rem;
+    }
+  } 
+}

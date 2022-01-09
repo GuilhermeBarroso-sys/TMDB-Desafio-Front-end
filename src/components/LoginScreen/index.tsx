@@ -2,11 +2,13 @@ import { FormEvent, useContext, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Navigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/auth";
+import { ArrowBack } from "../ArrowBack";
 import styles from './styles.module.scss';
 export function LoginScreen() {
 	const {signIn } = useContext(AuthContext);
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const {isAuthenticated} = useContext(AuthContext);
 	const [success, setSuccess] = useState(false);
 	async function handleSubmit(event : FormEvent) {
 		event.preventDefault();
@@ -17,7 +19,9 @@ export function LoginScreen() {
 	}
 	return (
 		<div className={styles.container}>
+			<div><ArrowBack link = "/" /></div> 
 			{success && <Navigate to="/" />}
+			{isAuthenticated() && <Navigate to = "/" />}
 			<h1>Entrar</h1>
 			<div className={styles.formContainer}>
 				<Form>

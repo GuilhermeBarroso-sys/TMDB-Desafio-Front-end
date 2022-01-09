@@ -7,9 +7,6 @@ import styles from './style.module.scss';
 type TMovies = {
 	id: string;
 	title: string;
-	video: boolean;
-	adult: boolean;
-	vote_average: number;
 	poster_path: string;
 }
 

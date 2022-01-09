@@ -2,12 +2,14 @@ import { FormEvent, useContext, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Navigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/auth";
+import { ArrowBack } from "../ArrowBack";
 import styles from './styles.module.scss';
 export function RegisterScreen() {
 	const {signUp} = useContext(AuthContext);
 	const [name, setName] = useState('');
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const {isAuthenticated} = useContext(AuthContext);
 	const [success, setSuccess] = useState(false);
 	async function handleSubmit(event : FormEvent) {
 		event.preventDefault();
@@ -17,7 +19,10 @@ export function RegisterScreen() {
 		}
 	}
 	return (
+		
 		<div className={styles.container}>
+			<div><ArrowBack link = "/" /></div> 
+			{isAuthenticated() && <Navigate to = "/" />}
 			{success && <Navigate to="/" />}
 			<h1>Registrar-se</h1>
 			<div className={styles.formContainer}>
@@ -50,6 +55,8 @@ export function RegisterScreen() {
 				</Form>
 			</div>
 		</div>
+	
+    
 	
 	);
 }

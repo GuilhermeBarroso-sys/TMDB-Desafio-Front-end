@@ -10,12 +10,11 @@ import { DateFormated } from '../DateFormated';
 import { Stars } from '../Stars';
 import styles from './style.module.scss';
 import { SaveMovieInput } from '../SaveMovieInput';
+import { ArrowBack } from '../ArrowBack';
 type TMovie = {
 	id: string;
 	title: string;
 	overview: string;
-	video: boolean;
-	adult: boolean;
 	runtime: number;
 	genres: [{
 		id: string;
@@ -50,8 +49,8 @@ export function MovieScreen() {
 				return (
 					<div className={styles.flexContainer} key={data.title}>
 
+						<ArrowBack link = "/" />
 						<div key={data.title} className={styles.container}>
-							<Link to ="/"><div><AiOutlineArrowLeft/></div></Link>;
 							<h2>{data.title}</h2>
 							<div className={styles.description}>
 								<p>{data.overview}</p>
@@ -74,7 +73,7 @@ export function MovieScreen() {
 								<p><CommentInput movieId={handleGetMovieId()} handleSetComment = {handleSetComment}/></p>
 								
 							</div>
-							<h2> Comentarios</h2>
+							<h2> Comentários</h2>
 							<Comment movieId={handleGetMovieId()} comment = {comment}/>
 						</div>
 						<div className={styles.background}>

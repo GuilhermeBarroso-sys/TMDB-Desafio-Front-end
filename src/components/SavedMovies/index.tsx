@@ -12,8 +12,6 @@ type TMovies = {
 	id: string;
 	title: string;
 	release_date: string;
-	video: boolean;
-	adult: boolean;
 	vote_average: number;
 	poster_path: string;
 }

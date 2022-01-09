@@ -14,20 +14,16 @@ import searchImg from '../../assets/undraw_horror_movie_3988.svg';
 import { SavedMovies } from '../SavedMovies';
 export function HomeScreen() {
 	const {setLanguage, getLanguage,storageLanguage} = useContext(LanguageContext);
-	const {user,isAuthenticated, signOut} = useContext(AuthContext);
-	const [authenticate, setAuthenticate] = useState<boolean>(isAuthenticated());
+	const {isAuthenticated, signOut} = useContext(AuthContext);
 	const [search, setSearch] = useState('');
 	const [timeWindow, setTimeWindow] = useState("day");
-	useEffect(() => {
-		setAuthenticate(isAuthenticated());
-	}, [user]);
 	function handleLogout(event : React.MouseEvent<HTMLElement>) {
 		event.preventDefault();
 		signOut();
 	}
 	return (
 		<div className = {styles.homeScreen}>
-			{ authenticate
+			{ isAuthenticated()
 				? <div className={styles.menu}> <button onClick={handleLogout}><BiLogOut /></button> </div> 
 				: <div className={styles.menu}><Menu/></div> 
 			}
@@ -59,13 +55,13 @@ export function HomeScreen() {
 			</div>
 			<TrendingMovies timeWindow={timeWindow}/>
       
-			<h2>Meus filmes </h2>
+			<h2>Meus filmes 🎬 </h2>
 			{isAuthenticated() 
 				? <SavedMovies/>
 				: <div className={styles.savedMovies}><h5>Para salvar filmes, <Link to ="/register">crie sua conta clicando aqui</Link></h5> </div>
 			}
 
-			<h2> Buscar um filme </h2>
+			<h2> Buscar um filme 🔎</h2>
 			<div className={styles.search}>
 				<Search setSearch={setSearch}/>
 				

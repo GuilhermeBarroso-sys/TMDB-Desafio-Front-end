@@ -19,7 +19,6 @@ export function Comment({comment, movieId} : props) {
 	useEffect(() => {
 		api.get<Comment[]>(`comment/${movieId}`)
 			.then(({data}) => {
-				console.log(data);
 				setComments(data);
 			});
 	}, [comment]);

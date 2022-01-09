@@ -4,15 +4,13 @@ import "react-multi-carousel/lib/styles.css";
 import { useContext, useEffect, useState } from "react";
 import { DateFormated } from "../DateFormated";
 import { Stars } from "../Stars";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { api } from "../../services/api";
 import { LanguageContext } from "../../contexts/language";
 type TMovies = {
 	id: string;
 	title: string;
 	release_date: string;
-	video: boolean;
-	adult: boolean;
 	vote_average: number;
 	poster_path: string;
 }

@@ -2,7 +2,6 @@ import Carousel from "react-multi-carousel";
 import styles from './styles.module.scss';
 import "react-multi-carousel/lib/styles.css";
 import { useContext, useEffect, useState } from "react";
-import NoImage from '../../assets/undraw_warning_cyit.svg';
 import { Link } from "react-router-dom";
 import { api } from "../../services/api";
 import { LanguageContext } from "../../contexts/language";
@@ -10,9 +9,6 @@ type TMovies = {
 	id: string;
 	title: string;
 	release_date: string;
-	video: boolean;
-	adult: boolean;
-	vote_average: number;
 	poster_path: string;
 }
 
@@ -27,7 +23,6 @@ export function SearchMovies({search} : props) {
 	const [movies,setMovies] = useState<TMovies[]>([]);
 	useEffect(()=> {
 		if(search) {
-			console.log(`searchMovie?query=${search}&language=${language}`);
 			api.get<TSearchMovies>(`searchMovie?query=${search}&language=${language}`)
 				.then(({data}) => {
 					const {results} = data;
@@ -75,7 +70,6 @@ export function SearchMovies({search} : props) {
 				removeArrowOnDeviceType={["tablet", "mobile"]}
 				itemClass={styles.item}
 			>
-
 
 				{movies.map((movie) => {
 					if(movie.poster_path) {

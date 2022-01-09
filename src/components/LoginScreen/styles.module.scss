@@ -1,10 +1,9 @@
 .container {
   width:100%;
+  
   color: var(--white);
   height:100vh;
-  display:flex;
-  flex-direction: column;
-  justify-content: center;
+
   align-items: center;
   h1{
     width:100%;
@@ -13,6 +12,7 @@
     margin-bottom:1rem;
   }
   .formContainer {
+    
     max-width:600px;
     margin:0 auto;
   }

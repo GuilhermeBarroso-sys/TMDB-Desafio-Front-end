@@ -14,21 +14,23 @@ export function CommentInput({handleSetComment, movieId} : props) {
 			loginWarning("Você precisa criar uma conta para comentar!");
 		}else {
 			const { value } = await Swal.fire<string>({
-				title: 'Escreva um comentario',
+				title: 'Escreva um comentário',
 				input: 'text',
 				showCancelButton: true,
 				inputValidator: (value) => {
 					if (!value) {
-						return 'O Comentario não pode ser vazio!';
+						return 'O Comentário não pode ser vazio!';
 					}
 				}
 			});
-			api.post('comment',{text: value, movie_id: movieId}).then((response) => {
-				if(response.status == 201) {
-					Swal.fire("Sucesso", "Comentário adicionado com sucesso!", "success");
-					handleSetComment(value);
-				}
-			});
+			if(value) {
+				api.post('comment',{text: value, movie_id: movieId}).then((response) => {
+					if(response.status == 201) {
+						Swal.fire("Sucesso", "Comentário adicionado com sucesso!", "success");
+						handleSetComment(value);
+					}
+				});
+			}
 		}
 	}
 	return (
