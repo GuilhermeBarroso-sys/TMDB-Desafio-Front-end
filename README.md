@@ -45,7 +45,7 @@
 ### 2 - Configurar Variáveis de ambiente
 Para executar o projeto, primeiro é preciso configurar o .env
 
-Renomeie o arquivo .env.example para .env, logo em seguida coloque as informações necessarias, que são:
+Renomeie o arquivo .env.example para .env, logo em seguida, coloque as informações necessarias que são:
     
     1- VITE_REACT_APP_API_KEY -> É o endereço do backend
     
