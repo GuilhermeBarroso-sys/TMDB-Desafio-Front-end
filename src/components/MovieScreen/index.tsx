@@ -51,7 +51,7 @@ export function MovieScreen() {
 							<h2>{data.title}</h2>
 							<div className={styles.description}>
 								<p>{data.overview}</p>
-								<p>Data de lançamento: <DateFormated date = {`${data.release_date}`} format='dd/MM/yyyy' /></p>
+								<p>Data de lançamento: <DateFormated date = {`${data.release_date}`} formatDate='dd/MM/yyyy' /></p>
 								<p>Duracao: {(data.runtime / 60).toFixed(2)} Horas</p>
 								<p>Gênero: {data.genres.map((genre, index) => {
 									

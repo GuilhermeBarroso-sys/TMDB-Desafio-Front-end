@@ -74,7 +74,7 @@ export function TrendingMovies({timeWindow} : props) {
 							<Link to={`/movie/${movie.id}`}><img src={`${import.meta.env.VITE_IMAGE_URL}/${movie.poster_path}`}/> </Link>
 							<div className= {styles.hideLongText}>
 								<div title={movie.title}>{movie.title}</div>
-								<div><DateFormated date={movie.release_date} format={"dd/MM/yyyy"}/></div>
+								<div><DateFormated date={movie.release_date} formatDate={"dd/MM/yyyy"}/></div>
 								<div><Stars average_rate={movie.vote_average}/></div>
 							</div>
 						</div>

@@ -33,7 +33,7 @@ export function Comment({comment, movieId} : props) {
 									<span className={styles.author}>{comment.user.name}:</span>
 									<span > {comment.text}</span>
 									<div className={styles.datetime}>
-										<span ><DateFormated date={comment.created_at} format='dd/MM/yyyy'/></span>
+										<span ><DateFormated date={comment.created_at} formatDate='dd/MM/yyyy'/></span>
 									</div>
 								</div>
 							</div>

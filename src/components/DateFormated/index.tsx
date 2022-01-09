@@ -1,10 +1,10 @@
 import { parseISO } from "date-fns";
-import dateFormat from "date-fns";
+import {format} from "date-fns";
 interface props{
 	date: string;
-	format: string;
+	formatDate: string;
 }
-export function DateFormated({date,format} : props) {
-	const dateFormated = dateFormat.format(parseISO(date), format);
+export function DateFormated({date,formatDate} : props) {
+	const dateFormated = format(parseISO(date), formatDate);
 	return <span>{dateFormated}</span>;
 }
