@@ -47,7 +47,7 @@ Para executar o projeto, primeiro é preciso configurar o .env
 
 Renomeie o arquivo .env.example para .env, logo em seguida, coloque as informações necessarias que são:
     
-    1- VITE_REACT_APP_API_KEY -> É o endereço do backend
+    1- VITE_REACT_APP_API_URL -> É o endereço do backend
     
     2- VITE_IMAGE_URL -> Endereço de imagem do TMDB
     
