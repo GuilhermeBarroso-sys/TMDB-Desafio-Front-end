@@ -14,6 +14,7 @@ export function HandleLanguage(props : AuthProvider) {
 	function storageLanguage(language: string) {
 		localStorage.setItem('@desafioD1:language', language);
 	}
+	const [language, setLanguage] = useState('');
 	function getLanguage() {
 		const language = localStorage.getItem('@desafioD1:language');
 		if(!language) {
@@ -26,7 +27,7 @@ export function HandleLanguage(props : AuthProvider) {
 	useEffect(() => {
 		getLanguage();
 	},[]);
-	const [language, setLanguage] = useState('pt-BR');
+  
 	return (
 		<LanguageContext.Provider value = {{language,setLanguage, getLanguage, storageLanguage}}>
 			{props.children}
