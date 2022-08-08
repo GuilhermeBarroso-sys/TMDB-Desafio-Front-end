@@ -1,6 +1,6 @@
-# TMDB-Desafio-Front-end
+# TMDB-challenge-Front-end
 ## Sobre o projeto
-  Esse projeto é um desafio propôsto pela D1, que resumidamente consome uma API de filmes. Para a criação da interface, essas tecnologias foram utilizadas:
+  This TMDB project project is an open source front-end, that get trendings movies through TMDB API, I used these technologies:
   - React (Vite App)
   - Typescript
   - Bootstrap
@@ -10,13 +10,13 @@
   
 ## Layout
 
-<p> O projeto é composto por 4 telas que se encontram na pasta pages.</p>
-<details> <summary> Clique Aqui para ver o layout </summary>
-  <h2>Visualizar filme</h2>
+<p> The project has 4 pages.</p>
+<details> <summary> Clique here to see  </summary>
+  <h2>See movie</h2>
   
   ![visualizar](https://imgur.com/HfxZYX4.png) 
   
-  <h2> Tela principal </h2>
+  <h2> Home screen </h2>
   
   
   ![principal1](https://imgur.com/5VsoR8X.png) 
@@ -27,7 +27,7 @@
     
   ![principal3](https://imgur.com/79vr7X5.png) 
   
-  <h2> Registrar-se <h2>
+  <h2> Register <h2>
     
   ![registrar](https://imgur.com/qT2ajY7.png)
     
@@ -39,31 +39,28 @@
     
     
     
-## Como executar o projeto  
-### 1 - Configurar o Backend
-  Primeiro de tudo, temos que configurar backend que se encontra aqui: https://github.com/GuilhermeBarroso-sys/TMDB-Desafio-Back-end
-### 2 - Configurar Variáveis de ambiente
-Para executar o projeto, primeiro é preciso configurar o .env
+## How to execute 
+### 1 -  back-end confugiration
+  first, we need the back-end here: https://github.com/GuilhermeBarroso-sys/TMDB-Desafio-Back-end
+### 2 - configure .env file
+to start the project, we need config the .env file
 
-Renomeie o arquivo .env.example para .env, logo em seguida, coloque as informações necessarias que são:
+Rename the file .env.example for .env, then, put these info:
     
-    1- VITE_REACT_APP_API_URL -> É o endereço do backend
+    1- VITE_REACT_APP_API_URL -> Back-end Address
     
-    2- VITE_IMAGE_URL -> Endereço de imagem do TMDB
+    2- VITE_IMAGE_URL -> TMDB IMAGES source
     
-<h5> obs: A Variável de ambiente VITE_IMAGE_URL já está inserida para facilitar os testes. </h5>
+<h5> obs: the VITE_IMAGE_URL alredy been configured. </h5>
     
-### 3 - Baixar dependências e executar o projeto
-Nesse Projeto eu utilizei o yarn, então:
+### 3 - Download the dependencies and start the project
+In this project i used yarn, then:
 ```ts
-  yarn // Baixar dependências 
-  yarn dev // Executar o projeto
+  yarn // Download dependencies
+  yarn dev // Start the project
 ```
-Pronto, o projeto está rodando! <br>
-  
-    
-Atenciosamente <br>
-Guilherme
+Done! <br>
+
     
 
 
