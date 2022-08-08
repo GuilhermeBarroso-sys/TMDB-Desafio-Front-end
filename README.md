@@ -51,7 +51,7 @@ Rename the file .env.example for .env, then, put these info:
     
     2- VITE_IMAGE_URL -> TMDB IMAGES source
     
-<h5> obs: the VITE_IMAGE_URL alredy been configured. </h5>
+<h5> Note: the VITE_IMAGE_URL alredy been configured. </h5>
     
 ### 3 - Download the dependencies and start the project
 In this project i used yarn, then:
