@@ -11,7 +11,7 @@
 ## Layout
 
 <p> The project has 4 pages.</p>
-<details> <summary> Clique here to see  </summary>
+<details> <summary> Clique here to view  </summary>
   <h2>See movie</h2>
   
   ![visualizar](https://imgur.com/HfxZYX4.png) 
